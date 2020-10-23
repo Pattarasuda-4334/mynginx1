@@ -1,0 +1,11 @@
+docker pull wordpress
+docker pull mysql:5.7
+docker pull phpmyadmin/phpmyadmin
+docker network create wordpress
+docker network ls
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=1111 -d mysql:5.7
+docker run --name pma -p 8888:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
+docker ps
+docker network connect wordpress mysql
+docker network connect wordpress pma
+docker network inspect wordpress
